@@ -3,16 +3,20 @@ import tensorflow as tf
 import numpy as np
 import cv2
 from PIL import Image, UnidentifiedImageError
-
+import gdown
 # ---------- PAGE CONFIG ----------
 st.set_page_config(page_title="😷 Mask Detector", page_icon="😷", layout="centered")
 
-# ---------- LOAD MODEL ----------
-@st.cache_resource
-def load_model():
-    return tf.keras.models.load_model("mask_detector_model.keras")
+# Load the trained model
+#load the model
+model_path = "flower_model.keras"
+drive_file_id = "1qJfWFr7NoDxEyPP7znGQLGl870mYTa4I"
+gdown_url = f"https://drive.google.com/uc?id={drive_file_id}"
 
-model = load_model()
+if not os.path.exists(model_path):
+    print("Downloading model from Google Drive...")
+    gdown.download(gdown_url, model_path, quiet=False)
+model = tf.keras.models.load_model(model_path)
 class_names = ['without_mask', 'with_mask']
 
 # ---------- HEADER ----------
