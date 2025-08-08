@@ -9,8 +9,8 @@ st.set_page_config(page_title="😷 Mask Detector", page_icon="😷", layout="ce
 
 # Load the trained model
 #load the model
-model_path = "flower_model.keras"
-drive_file_id = "1qJfWFr7NoDxEyPP7znGQLGl870mYTa4I"
+model_path = "mask_detector_model.keras"
+drive_file_id = "1o3BWIkWtjxPbcCXFNJOCuEuPdGsvCfCu"
 gdown_url = f"https://drive.google.com/uc?id={drive_file_id}"
 
 if not os.path.exists(model_path):
