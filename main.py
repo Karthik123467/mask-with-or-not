@@ -15,9 +15,12 @@ drive_file_id = "1o3BWIkWtjxPbcCXFNJOCuEuPdGsvCfCu"
 gdown_url = f"https://drive.google.com/uc?id={drive_file_id}"
 
 if not os.path.exists(model_path):
-    print("Downloading model from Google Drive...")
+    st.write("Downloading model from Google Drive...")
     gdown.download(gdown_url, model_path, quiet=False)
-model = tf.keras.models.load_model(model_path)
+@st.cache_resource
+def load_trained_model(path):
+    return tf.keras.models.load_model(path)
+model = load_trained_model(model_path)
 class_names = ['without_mask', 'with_mask']
 
 # ---------- HEADER ----------
